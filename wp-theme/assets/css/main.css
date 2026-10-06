@@ -117,6 +117,29 @@ section { padding: 64px 0; }
 .footer__list a:hover { color: var(--white); }
 .footer__copy { font-size: 13px; color: var(--gray-500); text-align: right; }
 
+/* ===== ACCOUNT ===== */
+.account-page { padding: 40px 0 80px; }
+.account-layout { display: grid; grid-template-columns: 220px 1fr; gap: 40px; }
+.account-nav { display: flex; flex-direction: column; gap: 4px; }
+.account-nav__item { padding: 10px 14px; border-radius: var(--radius-sm); font-size: 14px; color: var(--gray-800); transition: var(--transition); }
+.account-nav__item:hover, .account-nav__item.is-active, .account-nav__item.is_active { background: var(--pink-100); color: var(--pink-600); font-weight: 500; }
+.account-content { min-height: 300px; }
+.account-content h2 { font-size: 20px; font-weight: 700; margin-bottom: 20px; }
+.account-content table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.account-content table th { text-align: left; padding: 10px; background: var(--gray-100); font-weight: 600; border-bottom: 2px solid var(--gray-200); }
+.account-content table td { padding: 12px 10px; border-bottom: 1px solid var(--gray-200); }
+.account-content .button { display: inline-flex; padding: 8px 16px; background: var(--pink-600); color: var(--white); border-radius: var(--radius-sm); font-size: 13px; font-weight: 500; transition: var(--transition); }
+.account-content .button:hover { background: var(--pink-500); }
+.account-auth { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; max-width: 860px; }
+.account-auth input[type="text"],
+.account-auth input[type="email"],
+.account-auth input[type="password"] { width: 100%; border: 1.5px solid var(--gray-200); border-radius: var(--radius-sm); padding: 10px 14px; font-size: 14px; outline: none; margin-top: 6px; margin-bottom: 16px; }
+.account-auth input:focus { border-color: var(--pink-400); }
+.account-auth .button { background: var(--pink-600); color: var(--white); padding: 12px 28px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 500; border: none; cursor: pointer; transition: var(--transition); }
+.account-auth .button:hover { background: var(--pink-500); }
+.account-auth label { font-size: 13px; font-weight: 500; color: var(--gray-800); }
+.woocommerce-form__label-for-checkbox { display: flex; align-items: center; gap: 8px; font-size: 13px; margin-bottom: 16px; }
+
 /* ===== CART ===== */
 .cart-page { padding: 40px 0 80px; }
 .cart-empty { text-align: center; padding: 60px 0; display: flex; flex-direction: column; align-items: center; gap: 20px; }
