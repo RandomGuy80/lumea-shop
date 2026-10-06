@@ -54,6 +54,8 @@
             $products = new WP_Query($args);
             while ($products->have_posts()):
                 $products->the_post();
+                global $product;
+                $product = wc_get_product(get_the_ID());
                 get_template_part('template-parts/product', 'card');
             endwhile;
             wp_reset_postdata();
