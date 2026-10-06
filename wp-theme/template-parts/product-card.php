@@ -8,7 +8,7 @@ if (!$product) return;
         <?php if (has_post_thumbnail()): ?>
             <?php the_post_thumbnail('woocommerce_thumbnail', ['class' => 'product-card__img']); ?>
         <?php else: ?>
-            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/placeholder.jpg"
+            <img src="<?php echo esc_url(wc_placeholder_img_src('woocommerce_thumbnail')); ?>"
                  alt="<?php the_title_attribute(); ?>" class="product-card__img">
         <?php endif; ?>
         <?php if ($product->is_on_sale()): ?>

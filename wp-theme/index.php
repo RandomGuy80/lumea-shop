@@ -26,7 +26,7 @@
             ]);
             foreach ($categories as $cat):
                 $thumbnail_id = get_term_meta($cat->term_id, 'thumbnail_id', true);
-                $image = $thumbnail_id ? wp_get_attachment_url($thumbnail_id) : get_template_directory_uri() . '/assets/images/placeholder.jpg';
+                $image = $thumbnail_id ? wp_get_attachment_url($thumbnail_id) : wc_placeholder_img_src('woocommerce_thumbnail');
             ?>
                 <a href="<?php echo get_term_link($cat); ?>" class="category-card">
                     <div class="category-card__img">
