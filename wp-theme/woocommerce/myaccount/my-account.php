@@ -9,7 +9,7 @@
                 <nav class="account-nav">
                     <?php foreach (wc_get_account_menu_items() as $endpoint => $label): ?>
                         <a href="<?php echo esc_url(wc_get_account_endpoint_url($endpoint)); ?>"
-                           class="account-nav__item <?php echo wc_is_account_page() && isset($_GET['action']) && $_GET['action'] === $endpoint ? 'is-active' : (wc_get_account_menu_item_classes($endpoint) ? 'is-active' : ''); ?>">
+                           class="account-nav__item <?php echo wc_is_account_page() && isset($_GET['action']) && sanitize_text_field($_GET['action']) === $endpoint ? 'is-active' : (wc_get_account_menu_item_classes($endpoint) ? 'is-active' : ''); ?>">
                             <?php echo esc_html($label); ?>
                         </a>
                     <?php endforeach; ?>

@@ -14,7 +14,7 @@
                 <?php
                 $cats = get_terms(['taxonomy' => 'product_cat', 'hide_empty' => true, 'exclude' => [get_option('default_product_cat')]]);
                 foreach ($cats as $cat):
-                    $active = (isset($_GET['cat']) && $_GET['cat'] == $cat->slug) ? 'is-active' : '';
+                    $active = (isset($_GET['cat']) && sanitize_text_field($_GET['cat']) === $cat->slug) ? 'is-active' : '';
                 ?>
                 <li>
                     <a href="?cat=<?php echo esc_attr($cat->slug); ?>"
