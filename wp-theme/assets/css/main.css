@@ -63,12 +63,99 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 section { padding: 64px 0; }
 
 /* ===== HERO ===== */
-.hero { background: var(--pink-100); padding: 80px 0; }
-.hero__inner { display: flex; align-items: center; }
+.hero {
+    background: linear-gradient(135deg, #fff0f5 0%, #ffd6e7 50%, #ffadd2 100%);
+    padding: 80px 0;
+    overflow: hidden;
+    position: relative;
+}
+.hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,133,179,0.3) 0%, transparent 70%);
+    top: -200px; right: -100px;
+    pointer-events: none;
+}
+.hero::after {
+    content: '';
+    position: absolute;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(240,98,146,0.15) 0%, transparent 70%);
+    bottom: -100px; left: 10%;
+    pointer-events: none;
+}
+.hero__inner { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1; }
 .hero__content { max-width: 560px; }
+.hero__visual {
+    width: 420px; height: 420px;
+    flex-shrink: 0;
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+}
+.hero__circle {
+    width: 340px; height: 340px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff85b3, #e91e8c);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 20px 60px rgba(233,30,140,0.3);
+    position: relative;
+}
+.hero__circle::before {
+    content: '✦';
+    font-size: 120px;
+    color: rgba(255,255,255,0.25);
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+}
+.hero__circle-text {
+    font-size: 22px;
+    font-weight: 800;
+    color: white;
+    text-align: center;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+    position: relative;
+    z-index: 1;
+}
+.hero__badge {
+    position: absolute;
+    background: white;
+    border-radius: 40px;
+    padding: 10px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--pink-600);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+.hero__badge--1 { top: 40px; right: 20px; }
+.hero__badge--2 { bottom: 60px; left: 10px; }
 .hero__label { display: inline-block; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pink-600); margin-bottom: 16px; }
 .hero__title { font-size: clamp(36px, 5vw, 64px); font-weight: 800; line-height: 1.1; letter-spacing: -1px; margin-bottom: 16px; }
 .hero__text { font-size: 18px; color: var(--gray-500); margin-bottom: 32px; }
+
+/* ===== PROMO BANNERS ===== */
+.promo-banner { padding: 0 0 64px; }
+.promo-banner__grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 200px 200px; gap: 16px; }
+.promo-banner__item { border-radius: var(--radius-md); padding: 32px; display: flex; align-items: flex-end; position: relative; overflow: hidden; }
+.promo-banner__item--large { grid-row: 1 / 3; background: linear-gradient(135deg, #ffd6e7 0%, #ff85b3 60%, #e91e8c 100%); }
+.promo-banner__item--rose { background: linear-gradient(135deg, #f06292 0%, #e91e8c 100%); }
+.promo-banner__item--dark { background: linear-gradient(135deg, #424242 0%, #1a1a1a 100%); }
+.promo-banner__item::before {
+    content: '';
+    position: absolute;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    top: -60px; right: -40px;
+}
+.promo-banner__content { position: relative; z-index: 1; }
+.promo-banner__label { display: block; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.8); margin-bottom: 8px; }
+.promo-banner__title { font-size: 22px; font-weight: 700; color: white; margin-bottom: 16px; line-height: 1.2; }
+.promo-banner__item--large .promo-banner__title { font-size: 28px; }
 
 /* ===== CATEGORIES ===== */
 .categories__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
@@ -287,6 +374,9 @@ section { padding: 64px 0; }
     /* Hero */
     .hero { padding: 48px 0; }
     .hero__title { font-size: 36px; }
+    .hero__visual { display: none; }
+    .promo-banner__grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+    .promo-banner__item--large { grid-row: auto; min-height: 200px; }
 }
 
 @media (max-width: 480px) {

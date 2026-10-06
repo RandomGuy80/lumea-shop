@@ -3,12 +3,22 @@
 <section class="hero">
     <div class="container hero__inner">
         <div class="hero__content">
-            <span class="hero__label">Новая коллекция</span>
+            <span class="hero__label">Новая коллекция 2026</span>
             <h1 class="hero__title">Открой свою&nbsp;<br>красоту</h1>
-            <p class="hero__text">Натуральная косметика для сияющей кожи</p>
-            <a href="<?php echo get_permalink(wc_get_page_id('shop')); ?>" class="btn btn--primary">
-                Смотреть каталог
-            </a>
+            <p class="hero__text">Натуральная косметика для сияющей кожи. Только лучшие ингредиенты.</p>
+            <div style="display:flex;gap:16px;flex-wrap:wrap">
+                <a href="<?php echo get_permalink(wc_get_page_id('shop')); ?>" class="btn btn--primary">
+                    Смотреть каталог
+                </a>
+                <a href="#featured" class="btn btn--outline">Хиты продаж</a>
+            </div>
+        </div>
+        <div class="hero__visual">
+            <div class="hero__circle">
+                <div class="hero__circle-text">Lumea<br>Beauty</div>
+            </div>
+            <div class="hero__badge hero__badge--1">🌿 Натуральный состав</div>
+            <div class="hero__badge hero__badge--2">✨ Топ продаж</div>
         </div>
     </div>
 </section>
@@ -39,7 +49,35 @@
     </div>
 </section>
 
-<section class="featured">
+<section class="promo-banner">
+    <div class="container">
+        <div class="promo-banner__grid">
+            <div class="promo-banner__item promo-banner__item--large">
+                <div class="promo-banner__content">
+                    <span class="promo-banner__label">Скидка до 30%</span>
+                    <h3 class="promo-banner__title">Уход за кожей лица</h3>
+                    <a href="<?php echo get_permalink(wc_get_page_id('shop')); ?>" class="btn btn--primary">Купить сейчас</a>
+                </div>
+            </div>
+            <div class="promo-banner__item promo-banner__item--sm promo-banner__item--rose">
+                <div class="promo-banner__content">
+                    <span class="promo-banner__label">Новинка</span>
+                    <h3 class="promo-banner__title">Сыворотки и масла</h3>
+                    <a href="<?php echo get_permalink(wc_get_page_id('shop')); ?>" class="btn btn--outline" style="border-color:white;color:white">Смотреть</a>
+                </div>
+            </div>
+            <div class="promo-banner__item promo-banner__item--sm promo-banner__item--dark">
+                <div class="promo-banner__content">
+                    <span class="promo-banner__label">Бестселлер</span>
+                    <h3 class="promo-banner__title">Декоративная косметика</h3>
+                    <a href="<?php echo get_permalink(wc_get_page_id('shop')); ?>" class="btn btn--outline" style="border-color:white;color:white">Смотреть</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="featured" id="featured">
     <div class="container">
         <h2 class="section__title">Хиты продаж</h2>
         <div class="products__grid">
