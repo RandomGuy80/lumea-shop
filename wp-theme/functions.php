@@ -47,6 +47,38 @@ add_filter('woocommerce_enqueue_styles', '__return_empty_array');
 // Change WooCommerce products per page
 add_filter('loop_shop_per_page', fn() => 12);
 
+// Filter products by price via GET params
+add_action('woocommerce_product_query', function($q) {
+    $min = isset($_GET['min_price']) ? floatval($_GET['min_price']) : '';
+    $max = isset($_GET['max_price']) ? floatval($_GET['max_price']) : '';
+    if ($min !== '' || $max !== '') {
+        $meta_query = $q->get('meta_query') ?: [];
+        $price_query = ['key' => '_price', 'type' => 'NUMERIC'];
+        if ($min !== '') $price_query['value'][0] = $min;
+        if ($max !== '') $price_query['value'][1] = $max;
+        if (isset($price_query['value'][0]) && isset($price_query['value'][1])) {
+            $price_query['compare'] = 'BETWEEN';
+        } elseif (isset($price_query['value'][0])) {
+            $price_query['value'] = $price_query['value'][0];
+            $price_query['compare'] = '>=';
+        } else {
+            $price_query['value'] = $price_query['value'][1];
+            $price_query['compare'] = '<=';
+        }
+        $meta_query[] = $price_query;
+        $q->set('meta_query', $meta_query);
+    }
+
+    // Filter by category slug
+    if (!empty($_GET['cat'])) {
+        $q->set('tax_query', [[
+            'taxonomy' => 'product_cat',
+            'field'    => 'slug',
+            'terms'    => sanitize_text_field($_GET['cat']),
+        ]]);
+    }
+});
+
 // Add WooCommerce product count badge to cart icon
 add_filter('woocommerce_add_to_cart_fragments', function($fragments) {
     ob_start();

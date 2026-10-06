@@ -45,6 +45,21 @@
         });
     });
 
+    // Price filter
+    const applyPriceBtn = document.getElementById('apply-price');
+    if (applyPriceBtn) {
+        applyPriceBtn.addEventListener('click', function () {
+            const min = document.getElementById('price-min').value;
+            const max = document.getElementById('price-max').value;
+            const url = new URL(window.location.href);
+            if (min) url.searchParams.set('min_price', min);
+            else url.searchParams.delete('min_price');
+            if (max) url.searchParams.set('max_price', max);
+            else url.searchParams.delete('max_price');
+            window.location.href = url.toString();
+        });
+    }
+
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
