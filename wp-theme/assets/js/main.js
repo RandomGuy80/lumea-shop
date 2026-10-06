@@ -45,6 +45,64 @@
         });
     });
 
+    // Single product gallery thumbnails
+    document.querySelectorAll('.product-single__thumb').forEach(thumb => {
+        thumb.addEventListener('click', function () {
+            const mainImg = document.getElementById('main-product-img');
+            if (mainImg) mainImg.src = this.dataset.full;
+            document.querySelectorAll('.product-single__thumb').forEach(t => t.classList.remove('is-active'));
+            this.classList.add('is-active');
+        });
+    });
+
+    // Quantity control
+    document.querySelectorAll('.qty-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+            const input = this.closest('.qty-control').querySelector('.qty-input');
+            const min = parseInt(input.min) || 1;
+            const max = parseInt(input.max) || 999;
+            let val = parseInt(input.value) || 1;
+            if (this.dataset.action === 'plus') val = Math.min(val + 1, max);
+            if (this.dataset.action === 'minus') val = Math.max(val - 1, min);
+            input.value = val;
+        });
+    });
+
+    // Single product add to cart with quantity
+    $(document).on('click', '.btn--cart-single', function () {
+        const $btn = $(this);
+        const productId = $btn.data('product-id');
+        const nonce = $btn.data('nonce');
+        const qty = parseInt($('#product-qty').val()) || 1;
+
+        $btn.text('Добавляем...').prop('disabled', true);
+
+        $.ajax({
+            url: lumea_ajax.ajax_url,
+            type: 'POST',
+            data: { action: 'woocommerce_ajax_add_to_cart', product_id: productId, quantity: qty, nonce: nonce },
+            success: function (response) {
+                if (!response.error) {
+                    $btn.text('Добавлено!');
+                    $(document.body).trigger('wc_fragment_refresh');
+                    setTimeout(() => { $btn.text('Добавить в корзину').prop('disabled', false); }, 2000);
+                } else {
+                    $btn.text('Добавить в корзину').prop('disabled', false);
+                }
+            },
+            error: function () { $btn.text('Добавить в корзину').prop('disabled', false); },
+        });
+    });
+
+    // Accordion
+    document.querySelectorAll('.accordion__toggle').forEach(toggle => {
+        toggle.addEventListener('click', function () {
+            this.classList.toggle('is-open');
+            const body = this.nextElementSibling;
+            body.style.display = body.style.display === 'none' ? 'block' : 'none';
+        });
+    });
+
     // Price filter
     const applyPriceBtn = document.getElementById('apply-price');
     if (applyPriceBtn) {
